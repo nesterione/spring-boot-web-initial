@@ -18,7 +18,7 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig  extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     @Qualifier("customUserDetailsService")
@@ -34,9 +34,10 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resources/**", "/index").permitAll()
                 .and()
                 .formLogin()
+                .loginPage("/login").failureUrl("/login?error")
                 .and()
                 .httpBasic();
-                //.loginPage("/login").failureUrl("/login-error");
+
     }
 
 
@@ -46,6 +47,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
         System.out.println(userDetailsService);
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(new BCryptPasswordEncoder());
+
         return authenticationProvider;
     }
 

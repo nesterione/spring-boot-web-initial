@@ -2,11 +2,13 @@ package com.starter.architecture.controllers;
 
 import com.starter.architecture.services.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@Secured("ROLE_ADMIN")
 public class NoteController {
 
     final private NoteService noteService;

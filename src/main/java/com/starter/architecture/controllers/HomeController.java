@@ -21,9 +21,14 @@ public class HomeController {
 		return "home";
 	}
 
-	@RequestMapping("/foo")
-	public String foo(Map<String, Object> model) {
-		throw new RuntimeException("Foo");
+	@GetMapping("/login")
+	public String login() {
+		return "/login";
+	}
+
+	@GetMapping("/show")
+	public String show() {
+		return "/show";
 	}
 
 }

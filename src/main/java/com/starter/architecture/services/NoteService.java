@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@Secured("ROLE_ADMIN")
 public class NoteService {
 
     final private NoteRepository noteRepository;
