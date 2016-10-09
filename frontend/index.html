@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div ng-controller="MainCntl">
+
+    <input class="sdf" type="text" ng-model="modelName">
+
+    <h1>{{modelName}}</h1>
+    <p>{{2+3}}</p>
+
+    <p>{{val}}</p>
+    
+    <div ng-repeat="note in notes">
+        <hr>
+        <h3>{{note.title}}</h3>
+        <p>{{note.body}}</p>
+    </div>
+    
+    <input type="button" ng-click="clickAction()" value="load">
+    
+    <hr>
+    <p>title</p><input type="text" ng-model="note.title"><br>    
+    <p>body</p><input type="text" ng-model="note.body">
+    <input type="button" value="add" ng-click="add(note)">
+</div>
+
+</body>
+
+<script src="/resources/assets/angular/angular.min.js"></script>
+<script>
+
+    var myApp = angular.module('myApp', []);
+
+       
+    myApp.controller('MainCntl', ['$scope', '$http', function ($scope, $http) {
+           
+    $scope.notes = [];
+     
+        $scope.val = 232332443;
+
+        $scope.clickAction = function() {
+            
+            $http.get('http://localhost:8080/api/notes')
+                .success(function(data) {
+                    $scope.notes = data;
+                });
+        };
+        
+        $scope.add = function(note) {
+          
+            $http.put('http://localhost:8080/api/notes', note)
+                .success( function(noteResult) {
+                    $scope.notes.push(noteResult);
+                })
+                .error(function(){
+                    alert("error"); 
+                });
+            
+            
+            //var newNote = {};
+            //angular.copy(source, newNote);
+            //$scope.notes.push(newNote);
+            //JSON.parse(JSON.stringify(oldObject));
+            //console.log(note);
+            
+        };
+        
+        
+    
+    }]);
+
+</script>
+</html>

@@ -32,11 +32,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/resources/**", "/index").permitAll()
+
                 .and()
                 .formLogin()
                 .loginPage("/login").failureUrl("/login?error")
                 .and()
-                .httpBasic();
+                .httpBasic().and()
+                .cors().disable()
+                .csrf().disable();
 
     }
 

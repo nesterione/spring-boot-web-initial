@@ -1,5 +1,7 @@
 package com.starter.architecture.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class Note {
 
     private String body;
 
+    @JsonIgnore
     @ManyToMany
     private List<Tag> tags;
 
