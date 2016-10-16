@@ -15,6 +15,7 @@ public class User {
     private String username;
     private String password;
     private Role role;
+    private long money;
 
     public long getId() {
         return id;
@@ -46,6 +47,14 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public long getMoney() {
+        return money;
+    }
+
+    public void setMoney(long money) {
+        this.money = money;
     }
 
     @Override

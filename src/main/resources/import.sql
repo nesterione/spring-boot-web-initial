@@ -1,5 +1,5 @@
-insert into user(username, password, role) values('user', 'user', 0)
-insert into user(username, password, role) values('admin', 'admin', 1)
+insert into user(username, password, role, money) values('user', 'user', 0, 100)
+insert into user(username, password, role, money) values('admin', 'admin', 1, 1000)
 
 insert into tag(name) values ('Spring projects')
 insert into tag(name) values ('Apache projects')

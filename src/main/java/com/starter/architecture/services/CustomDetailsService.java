@@ -2,6 +2,8 @@ package com.starter.architecture.services;
 
 import com.starter.architecture.domain.User;
 import com.starter.architecture.repositories.UserRepository;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,6 +25,12 @@ public class CustomDetailsService implements UserDetailsService{
         this.userRepository = userRepository;
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -30,6 +38,8 @@ public class CustomDetailsService implements UserDetailsService{
         System.out.println(user);
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),getGrantedAuthorities(user));
     }
+
+
 
     private List<GrantedAuthority> getGrantedAuthorities(User user) {
         List<GrantedAuthority> authorities = new ArrayList<>();

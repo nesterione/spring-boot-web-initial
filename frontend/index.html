@@ -9,9 +9,11 @@
 </head>
 <body>
 
-<div ng-controller="MainCntl">
+<div ng-controller="MainCntl" ng-init="init()">
 
-    <input class="sdf" type="text" ng-model="modelName">
+   
+   
+    <!--<input class="sdf" ng-model="name" type="text">-->
 
     <h1>{{modelName}}</h1>
     <p>{{2+3}}</p>
@@ -24,7 +26,7 @@
         <p>{{note.body}}</p>
     </div>
     
-    <input type="button" ng-click="clickAction()" value="load">
+    <input type="button" ng-click="init()" value="load">
     
     <hr>
     <p>title</p><input type="text" ng-model="note.title"><br>    
@@ -42,11 +44,12 @@
        
     myApp.controller('MainCntl', ['$scope', '$http', function ($scope, $http) {
            
-    $scope.notes = [];
+        $scope.notes = [];
      
         $scope.val = 232332443;
 
-        $scope.clickAction = function() {
+        
+        $scope.init = function() {
             
             $http.get('http://localhost:8080/api/notes')
                 .success(function(data) {
